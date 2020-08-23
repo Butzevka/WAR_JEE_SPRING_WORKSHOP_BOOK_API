@@ -1,24 +1,33 @@
-package pl.coderslab.model;
+package pl.coderslab;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+@Entity
+@Table(name="books")
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Pattern(regexp = "[0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*")
     private String isbn;
+    @Length(min = 1)
     private String title;
+    @NotEmpty
     private String author;
+    @NotEmpty
     private String publisher;
-    private String type;
 
-    public Book() {
+    public String getPublisher() {
+        return publisher;
     }
 
-    public Book(Long id, String isbn, String title, String author, String publisher, String type) {
-        this.id = id;
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
+    public void setPublisher(String publisher) {
         this.publisher = publisher;
-        this.type = type;
     }
 
     public Long getId() {
@@ -53,22 +62,6 @@ public class Book {
         this.author = author;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
         return "Book{" +
@@ -77,7 +70,6 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
-                ", type='" + type + '\'' +
                 '}';
     }
 }
