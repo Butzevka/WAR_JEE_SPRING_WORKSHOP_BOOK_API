@@ -9,7 +9,7 @@
 * [Status](#status)
 
 ## General info
-Add more general information about project. What the purpose of the project is? Motivation?
+Coders Lab workshop - Book API 
 
 ## Technologies
 * Java 11
